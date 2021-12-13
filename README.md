@@ -5,7 +5,7 @@ This is an app cloned Unsplash's Newfeed and integrated with [Unsplash's API](ht
 - Use URLSession to read data from the API
 - Use NSCache to cache images to memory.
 
-<img src="https://github.com/xuantho000k/Unsplashs-Feed-Clone/blob/main/screenshots/1.png" width="200"><img 
+<img src="https://github.com/xuantho000k/Unsplashs-Feed-Clone/blob/main/screenshots/1.png" width="200"><img>
 
 # Installation
 
