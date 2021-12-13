@@ -25,6 +25,7 @@ struct AuthRouter {
 class AuthService {
     
     var api: APIConnection
+    var session: ASWebAuthenticationSession?
     
     init(_ api: APIConnection) {
         self.api = api
@@ -38,18 +39,19 @@ class AuthService {
                              "scope": "public+read_user+write_user+read_photos+write_photos+write_likes+write_followers+read_collections+write_collections"]
         
         let request = AuthRouter.Authorize().get(p).asURLRequest(api.baseURL)
-        let session = ASWebAuthenticationSession(url: request.url!, callbackURLScheme: "feedclone")
+        session = ASWebAuthenticationSession(url: request.url!, callbackURLScheme: "feedclone")
         { callbackURL, error in
             guard error == nil, let callbackURL = callbackURL else { return }
             
             let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
             if let code = queryItems?.filter({ $0.name == "code" }).first?.value {
                 debugPrint(code)
+                
             }
         }
-        session.presentationContextProvider = provider
-        session.prefersEphemeralWebBrowserSession = true
-        session.start()
+        session?.presentationContextProvider = provider
+        session?.prefersEphemeralWebBrowserSession = true
+        session?.start()
     }
     
     func getToken(completion: @escaping  Connection.Completion) {
@@ -60,5 +62,9 @@ class AuthService {
                              "code": ""]
         
         api.makeRequest(AuthRouter.Token().create(p), completion: completion)
+    }
+    
+    deinit {
+        debugPrint("deinit - AuthService")
     }
 }

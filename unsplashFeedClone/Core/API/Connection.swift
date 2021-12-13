@@ -72,4 +72,8 @@ class APIConnection: Connection {
             completion(nil, APIError.unknown)
         }
     }
+    
+    deinit {
+        debugPrint("deinit - APIConnection")
+    }
 }

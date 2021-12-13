@@ -53,4 +53,8 @@ class GalleryController {
             self.viewController?.reloadData()
         }
     }
+    
+    deinit {
+        debugPrint("deinit - GalleryController")
+    }
 }

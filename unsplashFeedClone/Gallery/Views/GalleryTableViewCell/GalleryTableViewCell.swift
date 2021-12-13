@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GalleryTableViewCellDelegate: AnyObject {
-    func didTappAtBackButton(onCell cell: GalleryTableViewCell)
+    func didTappAtLikeButton(onCell cell: GalleryTableViewCell)
 }
 
 class GalleryTableViewCell: UITableViewCell {
@@ -49,7 +49,7 @@ class GalleryTableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedAtLikeButton(_ sender: Any) {
-        delegate?.didTappAtBackButton(onCell: self)
+        delegate?.didTappAtLikeButton(onCell: self)
     }
     
 }

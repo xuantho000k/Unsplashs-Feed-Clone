@@ -14,12 +14,6 @@
 				<string>feedclone</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>CFBundleURLSchemes</key>
-			<array/>
-		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

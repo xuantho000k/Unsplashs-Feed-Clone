@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import AuthenticationServices
 
 class GalleryViewController: UIViewController {
+    
+    static let storyboardId = "GalleryViewController"
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,15 +21,9 @@ class GalleryViewController: UIViewController {
         setUp()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        let api = APIConnection(baseURL: "https://unsplash.com")
-//        let service = AuthService(api)
-//        service.authorize(self) { data, error in
-//
-//        }
-//    }
+    deinit {
+        debugPrint("deinit - GalleryViewController")
+    }
 
     func reloadData() {
         DispatchQueue.main.async {
@@ -41,6 +36,10 @@ class GalleryViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             self.tableView.reloadRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    @IBAction func tappedAtLogoutButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func setUp() {
@@ -73,7 +72,7 @@ extension GalleryViewController: UITableViewDataSource {
 }
 
 extension GalleryViewController: GalleryTableViewCellDelegate {
-    func didTappAtBackButton(onCell cell: GalleryTableViewCell) {
+    func didTappAtLikeButton(onCell cell: GalleryTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {
             return
         }
@@ -90,10 +89,3 @@ extension GalleryViewController: UITableViewDelegate {
         }
     }
 }
-
-extension GalleryViewController: ASWebAuthenticationPresentationContextProviding {
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return view.window!
-    }
-}
-

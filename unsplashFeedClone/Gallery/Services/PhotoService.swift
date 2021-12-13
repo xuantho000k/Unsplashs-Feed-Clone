@@ -59,4 +59,8 @@ class PhotoService {
             completion(true, nil)
         }
     }
+    
+    deinit {
+        debugPrint("deinit - PhotoService")
+    }
 }
